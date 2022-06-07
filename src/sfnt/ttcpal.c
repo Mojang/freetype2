@@ -41,7 +41,7 @@
 
   /* NOTE: These are the table sizes calculated through the specs. */
 #define CPAL_V0_HEADER_BASE_SIZE  12
-#define COLOR_SIZE                 4
+#define COLOR_SIZE                 4U
 
 
   /* all data from `CPAL' not covered in FT_Palette_Data */
@@ -150,7 +150,7 @@
       {
         if ( type_offset >= table_size )
           goto InvalidTable;
-        if ( face->palette_data.num_palettes * 2 >
+        if ( face->palette_data.num_palettes * 2U >
                table_size - type_offset )
           goto InvalidTable;
 
@@ -171,7 +171,7 @@
       {
         if ( label_offset >= table_size )
           goto InvalidTable;
-        if ( face->palette_data.num_palettes * 2 >
+        if ( face->palette_data.num_palettes * 2U >
                table_size - label_offset )
           goto InvalidTable;
 
@@ -192,7 +192,7 @@
       {
         if ( entry_label_offset >= table_size )
           goto InvalidTable;
-        if ( face->palette_data.num_palette_entries * 2 >
+        if ( face->palette_data.num_palette_entries * 2U >
                table_size - entry_label_offset )
           goto InvalidTable;
 
