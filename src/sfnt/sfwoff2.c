@@ -67,8 +67,8 @@
 #define WRITE_SHORT( p, v )        \
           do                       \
           {                        \
-            *(p)++ = ( (v) >> 8 ); \
-            *(p)++ = ( (v) >> 0 ); \
+            *(p)++ = (FT_Byte)( (v) >> 8 ); \
+            *(p)++ = (FT_Byte)( (v) >> 0 ); \
                                    \
           } while ( 0 )
 
@@ -150,14 +150,14 @@
     {
       if ( FT_READ_BYTE( result_byte ) )
         return error;
-      *value = result_byte + lowestUCode;
+      *value = (FT_UShort)(result_byte + lowestUCode);
       return FT_Err_Ok;
     }
     else if ( code == oneMoreByteCode2 )
     {
       if ( FT_READ_BYTE( result_byte ) )
         return error;
-      *value = result_byte + lowestUCode * 2;
+      *value = (FT_UShort)(result_byte + lowestUCode * 2);
       return FT_Err_Ok;
     }
     else
@@ -591,12 +591,12 @@
           if ( flag_offset >= dst_size )
             return FT_THROW( Invalid_Table );
 
-          dst[flag_offset++] = repeat_count;
+          dst[flag_offset++] = (FT_Byte)repeat_count;
         }
         if ( flag_offset >= dst_size )
           return FT_THROW( Invalid_Table );
 
-        dst[flag_offset++] = flag;
+        dst[flag_offset++] = (FT_Byte)flag;
         repeat_count       = 0;
       }
 
@@ -610,7 +610,7 @@
       if ( flag_offset >= dst_size )
         return FT_THROW( Invalid_Table );
 
-      dst[flag_offset++] = repeat_count;
+      dst[flag_offset++] = (FT_Byte)repeat_count;
     }
 
     xy_bytes = x_bytes + y_bytes;
@@ -633,7 +633,7 @@
       if ( dx == 0 )
         ;
       else if ( dx > -256 && dx < 256 )
-        dst[x_offset++] = FT_ABS( dx );
+        dst[x_offset++] = (FT_Byte)FT_ABS( dx );
       else
       {
         pointer = dst + x_offset;
@@ -646,7 +646,7 @@
       if ( dy == 0 )
         ;
       else if ( dy > -256 && dy < 256 )
-        dst[y_offset++] = FT_ABS( dy );
+        dst[y_offset++] = (FT_Byte)FT_ABS( dy );
       else
       {
         pointer = dst + y_offset;
