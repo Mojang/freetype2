@@ -857,7 +857,7 @@
         return NULL;
       }
 
-      len = ft_strlen( result );
+      len = (FT_UInt)ft_strlen( result );
 
       /* sanitize if necessary; we reserve space for 36 bytes (a 128bit  */
       /* checksum as a hex number, preceded by `-' and followed by three */
